@@ -22,20 +22,31 @@ export function normalizeDate(input) {
   const text = input.trim().toLowerCase();
   if (!text) return null;
 
-  const named = text.match(/([a-z]{3,9})\.?\s*(\d{1,2})|(\d{1,2})\s*(?:st|nd|rd|th)?\s+([a-z]{3,9})/);
-  if (named) {
-    const word = named[1] || named[4];
-    const number = Number(named[2] || named[3]);
-    const month = MONTHS[word.slice(0, 3)];
-    if (month) return build(month, number);
+  const monthFirst = text.match(
+    /^([a-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:(?:\s*,\s*|\s+)(?:\d{2}|\d{4}))?$/,
+  );
+  if (monthFirst) {
+    return build(MONTHS[monthFirst[1].slice(0, 3)], Number(monthFirst[2]));
   }
 
-  const separated = text.match(/^(\d{1,2})\s*[/.\-\s]\s*(\d{1,2})/);
-  if (separated) return build(Number(separated[1]), Number(separated[2]));
+  const dayFirst = text.match(
+    /^(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]{3,9})\.?(?:\s+(?:\d{2}|\d{4}))?$/,
+  );
+  if (dayFirst) {
+    return build(MONTHS[dayFirst[2].slice(0, 3)], Number(dayFirst[1]));
+  }
 
-  const compact = text.replace(/\D/g, '');
-  if (compact.length === 4) return build(Number(compact.slice(0, 2)), Number(compact.slice(2)));
-  if (compact.length === 3) return build(Number(compact.slice(0, 1)), Number(compact.slice(1)));
+  const separated = text.match(
+    /^(\d{1,2})\s*([/.-])\s*(\d{1,2})(?:\s*\2\s*(?:\d{2}|\d{4}))?$/,
+  );
+  if (separated) return build(Number(separated[1]), Number(separated[3]));
+
+  if (/^\d{4}$/.test(text)) {
+    return build(Number(text.slice(0, 2)), Number(text.slice(2)));
+  }
+  if (/^\d{3}$/.test(text)) {
+    return build(Number(text.slice(0, 1)), Number(text.slice(1)));
+  }
 
   return null;
 }
