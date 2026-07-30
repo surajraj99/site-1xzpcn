@@ -1,0 +1,10 @@
+# Originals and the text export. These must never enter git history —
+# the repo becomes public when Pages is enabled, and history can't be un-pushed.
+data/
+
+# Brainstorming session artifacts
+.superpowers/
+
+.DS_Store
+*.log
+tools/measured.json
