@@ -74,3 +74,11 @@ boot().catch((error) => {
     '<p class="noscript">Something went wrong loading this. Try reopening it.</p>';
   console.error(error);
 });
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {
+      /* offline support is a bonus, never a blocker */
+    });
+  });
+}
