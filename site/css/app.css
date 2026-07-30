@@ -1,0 +1,202 @@
+```css
+:root {
+  --ground: #100e10;
+  --ivory: #f2ece6;
+  --rose: #c9788a;
+  --amber: #e9b7a0;
+  --dim: #8d8681;
+  --serif: ui-serif, "New York", Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --pad: max(20px, env(safe-area-inset-left));
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--ground); }
+
+body {
+  background: var(--ground);
+  color: var(--ivory);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- the single motion vocabulary ---------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+  will-change: opacity, transform;
+}
+[data-reveal].is-revealed { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .letter__img { transition: none !important; }
+}
+
+/* --- frame scaffold ------------------------------------------------------ */
+.frame {
+  position: relative;
+  padding: 12vh var(--pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.frame--gate, .frame--title, .frame--chapter, .frame--end {
+  min-height: 100dvh;
+  align-items: center;
+  text-align: center;
+  padding-top: max(12vh, env(safe-area-inset-top));
+  padding-bottom: max(12vh, env(safe-area-inset-bottom));
+}
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.rule { border: 0; width: 28px; height: 1px; background: rgba(242,236,230,0.3); margin: 18px auto; }
+
+/* --- gate ---------------------------------------------------------------- */
+.gate__inner { max-width: 300px; }
+.gate__prompt { font-family: var(--serif); font-size: 26px; line-height: 1.25; margin-bottom: 26px; }
+
+.gate__input {
+  width: 100%; min-height: 48px;
+  background: transparent;
+  border: 1px solid rgba(242,236,230,0.28);
+  border-radius: 10px;
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-size: 17px; /* 17px or larger stops iOS zooming the field on focus */
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 12px;
+}
+.gate__input:focus { outline: none; border-color: var(--amber); }
+
+.gate__submit {
+  margin-top: 14px; min-height: 44px; width: 100%;
+  background: transparent; border: 1px solid rgba(242,236,230,0.28); border-radius: 10px;
+  color: var(--ivory); font-family: var(--sans);
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.gate__submit:active { background: rgba(242,236,230,0.06); }
+.gate__input.is-wrong { border-color: var(--rose); }
+.gate__hint { margin-top: 20px; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--dim); }
+
+/* --- title and chapter --------------------------------------------------- */
+.title__line {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(30px, 10vw, 40px); line-height: 1.1;
+  letter-spacing: -0.015em; margin-top: 12px;
+}
+.title__cta {
+  background: transparent; border: 0; color: var(--dim);
+  font-family: var(--sans); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  min-height: 44px; padding: 0 16px;
+}
+
+.chapter__title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(28px, 9vw, 34px); line-height: 1.15; margin-top: 10px;
+}
+.chapter__range { font-family: var(--sans); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-top: 12px; }
+.frame--chapter .kicker { color: var(--rose); }
+
+.interstitial__line {
+  font-family: var(--serif); font-size: 22px; line-height: 1.5;
+  max-width: 22ch; margin: 0 auto; text-align: center; color: var(--ivory);
+}
+
+/* --- media treatments ---------------------------------------------------- */
+.frame--photo, .frame--video, .frame--letter { padding: 8vh 0; }
+
+.media { display: block; width: 100%; height: auto; background: #17151a; }
+
+/* portrait: full-bleed with the caption over a scrim */
+.is-portrait { padding: 0; min-height: 100dvh; justify-content: flex-end; }
+.is-portrait .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.is-portrait .caption {
+  position: relative; z-index: 1;
+  padding: 0 var(--pad) max(34px, env(safe-area-inset-bottom));
+  background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0));
+  padding-top: 90px;
+}
+
+/* landscape: a film still centred on the ground, caption beneath */
+.is-still .media { width: 100%; }
+.is-still .caption, .is-inset .caption, .is-pan .caption { padding: 16px var(--pad) 0; }
+
+/* small originals: never enlarged past native size */
+.is-inset { padding: 8vh var(--pad); }
+.is-inset .media { width: 78%; margin: 0 auto; max-width: 100%; }
+
+/* ultra-wide: drifts horizontally as she scrolls past */
+.is-pan .letter__viewport, .is-pan.frame--photo { overflow: hidden; }
+.letter__viewport { overflow: hidden; width: 100%; }
+.is-pan .media {
+  width: auto; height: 62dvh; max-width: none;
+  transform: translateX(var(--pan, 0%));
+  transition: transform 120ms linear;
+}
+
+.caption { text-align: left; }
+.caption__line { font-family: var(--serif); font-size: 16px; line-height: 1.45; max-width: 34ch; }
+.caption__date { font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-top: 8px; }
+
+/* --- text exchanges ------------------------------------------------------ */
+.frame--texts { padding: 14vh var(--pad); }
+.thread { max-width: 340px; margin: 0 auto; width: 100%; }
+.bubble {
+  font-family: var(--sans); font-size: 15px; line-height: 1.4;
+  padding: 9px 13px; border-radius: 17px; margin: 6px 0; max-width: 82%;
+  word-wrap: break-word;
+}
+.bubble--her { background: #26232a; color: var(--ivory); border-bottom-left-radius: 5px; }
+.bubble--him { background: #7d4f5c; color: #fff; margin-left: auto; border-bottom-right-radius: 5px; }
+.thread__stamp {
+  font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--dim); text-align: center; margin-top: 18px;
+}
+
+/* --- numbers ------------------------------------------------------------- */
+.frame--numbers { min-height: 100dvh; gap: 44px; padding: 16vh var(--pad); }
+.stat { text-align: center; max-width: 30ch; margin: 0 auto; }
+.stat__value { font-family: var(--serif); font-weight: 500; font-size: clamp(34px, 11vw, 46px); color: var(--amber); line-height: 1; display: block; }
+.stat__label { font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); display: block; margin-top: 10px; }
+.stat__note { font-family: var(--serif); font-style: normal; font-size: 15px; line-height: 1.5; color: var(--ivory); display: block; margin-top: 14px; }
+
+/* --- the letter ---------------------------------------------------------- */
+.frame--missive { padding: 18vh var(--pad); }
+.missive__inner { max-width: 33ch; margin: 0 auto; }
+.missive__line { font-family: var(--serif); font-size: 17px; line-height: 1.75; margin-bottom: 20px; }
+.missive__signoff { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--amber); margin-top: 12px; }
+
+/* --- end ----------------------------------------------------------------- */
+.end__line { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 9vw, 34px); line-height: 1.15; }
+.end__date { font-family: var(--sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+
+.noscript { padding: 40vh 24px; text-align: center; font-family: var(--serif); color: var(--ivory); }
+
+/* --- audio toggle -------------------------------------------------------- */
+.audio-toggle {
+  position: fixed; z-index: 20;
+  top: max(14px, env(safe-area-inset-top)); right: 14px;
+  min-width: 44px; min-height: 44px;
+  background: rgba(16,14,16,0.55); backdrop-filter: blur(8px);
+  border: 1px solid rgba(242,236,230,0.18); border-radius: 999px;
+  color: var(--ivory); font-family: var(--sans);
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.audio-toggle[hidden] { display: none; }
