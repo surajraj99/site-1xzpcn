@@ -243,7 +243,9 @@ test('photo frame carries dimensions, lazy src and treatment class', () => {
   assert.match(html, /width="1600" height="1200"/);
   assert.match(html, /The morning it rained\./);
   assert.match(html, /Jan 30, 2026/);
-  assert.ok(!html.includes('src="media/photos/0004.webp"'), 'src must stay lazy until revealed');
+  // Must test for a standalone src attribute: `data-src="…"` contains `src="…"` as a substring,
+  // so a plain includes() check passes even when the src is correctly still lazy.
+  assert.ok(!/\ssrc="/.test(html), 'src must stay lazy until revealed');
 });
 
 test('video frame is muted, looping, inline and poster-backed', () => {
