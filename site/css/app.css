@@ -124,19 +124,13 @@ body {
 
 .media { display: block; width: 100%; height: auto; background: #17151a; }
 
-/* portrait: full-bleed with the caption over a scrim */
-.is-portrait { padding: 0; min-height: 100dvh; justify-content: flex-end; }
-.is-portrait .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.is-portrait .caption {
-  position: relative; z-index: 1;
-  padding: 0 var(--pad) max(34px, env(safe-area-inset-bottom));
-  background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0));
-  padding-top: 90px;
-}
+/* portrait: full width, no cropping */
+.is-portrait { padding: 8vh 0; }
+.is-portrait .media { width: 100%; height: auto; }
+.is-portrait .caption, .is-still .caption, .is-inset .caption, .is-pan .caption { padding: 16px var(--pad) 0; }
 
 /* landscape: a film still centred on the ground, caption beneath */
 .is-still .media { width: 100%; }
-.is-still .caption, .is-inset .caption, .is-pan .caption { padding: 16px var(--pad) 0; }
 
 /* small originals: never enlarged past native size */
 .is-inset { padding: 8vh var(--pad); }
@@ -163,8 +157,8 @@ body {
   padding: 9px 13px; border-radius: 17px; margin: 6px 0; max-width: 82%;
   word-wrap: break-word;
 }
-.bubble--her { background: #26232a; color: var(--ivory); border-bottom-left-radius: 5px; }
-.bubble--him { background: #7d4f5c; color: #fff; margin-left: auto; border-bottom-right-radius: 5px; }
+.bubble--her { background: #e9e9eb; color: #111; border-bottom-left-radius: 5px; }
+.bubble--him { background: #ebd9e1; color: #111; margin-left: auto; border-bottom-right-radius: 5px; }
 .thread__stamp {
   font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--dim); text-align: center; margin-top: 18px;
