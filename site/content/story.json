@@ -375,12 +375,43 @@
     },
     {
       "type": "numbers",
-      "stats": []
+      "stats": [
+        {
+          "value": "263,545",
+          "label": "words",
+          "note": "We wrote each other something longer than Moby Dick and never once noticed."
+        },
+        {
+          "value": "22,068",
+          "label": "messages",
+          "note": "About forty-eight a day, every day, for four hundred and fifty-six days."
+        },
+        {
+          "value": "April 29, 2025",
+          "label": "where the record starts",
+          "note": "Our text history begins the same day I first saw you. There is no before."
+        },
+        {
+          "value": "183,860",
+          "label": "words from you",
+          "note": "To my 79,685. For every word I sent, you sent more than two. I've read all of them."
+        }
+      ]
     },
     {
       "type": "missive",
-      "lines": [],
-      "signoff": "\u2014 me"
+      "lines": [
+        "Tejasvi,",
+        "Thank you for making this last year a lot better with your presence.",
+        "I know it hasn't always been easy, like when I had to play to win at board game night and Karolina and Ana got mad at me.",
+        "Or when you're dealing with things I can't fully understand because I'm not living your experiences.",
+        "But I care for you deeply.",
+        "I'm really proud of you, whether it's getting to 121 or just pushing through.",
+        "I really miss you when you're away.",
+        "I can't wait to see the progress we'll make in the next couple of months.",
+        "Love you tejers."
+      ],
+      "signoff": "\u2014 Suraj"
     },
     {
       "type": "end",
