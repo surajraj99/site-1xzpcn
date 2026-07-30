@@ -576,6 +576,7 @@ Expected: FAIL — `Cannot find module '.../tools/validate_story.mjs'`
 
 ```js
 import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 
 const REQUIRED = {
   gate: ['prompt', 'hint'],
@@ -657,7 +658,8 @@ export function validateStory(manifest) {
   return errors;
 }
 
-const invokedDirectly = process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop());
+const invokedDirectly = process.argv[1]
+  && import.meta.url === pathToFileURL(process.argv[1]).href;
 if (invokedDirectly && process.argv[2]) {
   const errors = validateStory(JSON.parse(readFileSync(process.argv[2], 'utf8')));
   if (errors.length) {
