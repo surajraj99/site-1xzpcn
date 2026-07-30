@@ -11,15 +11,27 @@ trap 'rm -rf "$WORK"' EXIT
 
 mkdir -p "$OUT/photos" "$OUT/video" "$OUT/letters" "$OUT/audio"
 
+# Rebuilding should remove only the pipeline's managed numbered outputs first
+rm -f "$OUT/photos/"[0-9][0-9][0-9][0-9].webp
+rm -f "$OUT/letters/"[0-9][0-9][0-9][0-9].webp
+rm -f "$OUT/video/"[0-9][0-9][0-9][0-9].mp4
+rm -f "$OUT/video/"[0-9][0-9][0-9][0-9].jpg
+rm -f "$OUT/audio/theme.m4a"
+
 MANIFEST="$ROOT/tools/measured.json"
-echo "[" > "$MANIFEST"
-FIRST=1
+touch "$WORK/entries.jsonl"
 
 emit() { # kind out src width height captured duration
-  [ $FIRST -eq 1 ] || echo "," >> "$MANIFEST"
-  FIRST=0
-  printf '  {"kind":"%s","out":"%s","src":"%s","width":%s,"height":%s,"captured":"%s","duration":%s}' \
-    "$1" "$2" "$3" "$4" "$5" "$6" "$7" >> "$MANIFEST"
+  jq -n -c \
+    --arg kind "$1" \
+    --arg out "$2" \
+    --arg src "$3" \
+    --argjson width "$4" \
+    --argjson height "$5" \
+    --arg captured "$6" \
+    --argjson duration "${7:-0}" \
+    '{kind: $kind, out: $out, src: $src, width: $width, height: $height, captured: $captured, duration: $duration}' \
+    >> "$WORK/entries.jsonl"
 }
 
 dims() {
@@ -40,7 +52,7 @@ convert_image() { # infile outdir index longedge quality kind
   sips -s format jpeg -s formatOptions 95 --resampleHeightWidthMax "$longedge" \
        "$infile" --out "$staged" >/dev/null
 
-  ffmpeg -nostdin -loglevel error -y -i "$staged" -quality "$quality" "$out"
+  ffmpeg -nostdin -loglevel error -y -i "$staged" -map_metadata -1 -quality "$quality" "$out"
 
   local wh; wh="$(dims "$out")"
   emit "$kind" "${out#"$ROOT/site/"}" "$base" "${wh%x*}" "${wh#*x}" "$(captured_photo "$infile")" "0"
@@ -73,9 +85,9 @@ while IFS= read -r f; do
   # -an strips audio: smaller files, and nothing can ever fight the soundtrack.
   ffmpeg -nostdin -loglevel error -y -i "$f" \
     -vf "scale='if(gt(iw,ih),min(1280,iw),-2)':'if(gt(iw,ih),-2,min(1280,ih))',format=yuv420p" \
-    -c:v libx264 -preset slow -crf 28 -an -movflags +faststart "$out"
+    -c:v libx264 -preset slow -crf 28 -an -map_metadata -1 -movflags +faststart "$out"
 
-  ffmpeg -nostdin -loglevel error -y -ss 0.1 -i "$out" -frames:v 1 -q:v 4 "$poster"
+  ffmpeg -nostdin -loglevel error -y -ss 0.1 -i "$out" -map_metadata -1 -frames:v 1 -q:v 4 "$poster"
 
   wh="$(dims "$out")"
   dur="$(ffprobe -v quiet -show_entries format=duration -of csv=p=0 "$out")"
@@ -86,14 +98,22 @@ done < <(find "$DATA" -maxdepth 1 -type f \( -iname '*.mov' -o -iname '*.mp4' \)
 
 # --- audio --------------------------------------------------------------------
 echo "audio:"
-song="$(find "$DATA" -maxdepth 1 -type f -iname '*.mp3' | head -n 1)"
-ffmpeg -nostdin -loglevel error -y -i "$song" -c:a aac -b:a 128k -movflags +faststart "$OUT/audio/theme.m4a"
+shopt -s nullglob
+songs=("$DATA"/*.mp3)
+if [ ${#songs[@]} -ne 1 ]; then
+  echo "Error: Expected exactly one .mp3 file in $DATA, found ${#songs[@]}" >&2
+  exit 1
+fi
+song="${songs[0]}"
+shopt -u nullglob
+
+ffmpeg -nostdin -loglevel error -y -i "$song" -map_metadata -1 -c:a aac -b:a 128k -movflags +faststart "$OUT/audio/theme.m4a"
 adur="$(ffprobe -v quiet -show_entries format=duration -of csv=p=0 "$OUT/audio/theme.m4a")"
 emit audio "media/audio/theme.m4a" "$(basename "$song")" 0 0 "" "${adur:-0}"
 echo "  $(basename "$song") -> media/audio/theme.m4a (${adur}s)"
 
-echo "" >> "$MANIFEST"
-echo "]" >> "$MANIFEST"
+jq -s '.' "$WORK/entries.jsonl" > "$WORK/measured.json"
+mv "$WORK/measured.json" "$MANIFEST"
 
 echo ""
 echo "wrote $MANIFEST"
