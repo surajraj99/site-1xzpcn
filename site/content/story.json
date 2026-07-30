@@ -1,10 +1,391 @@
 {
-  "meta": { "audio": "media/audio/theme.m4a", "gateAnswer": "04-29" },
+  "meta": {
+    "audio": "media/audio/theme.m4a",
+    "gateAnswer": "04-29"
+  },
   "frames": [
-    { "type": "gate", "prompt": "What day did we first see each other?", "hint": "the day I couldn't stop talking about you" },
-    { "type": "title", "kicker": "one year", "line": "of you and me", "cta": "tap to begin" },
-    { "type": "chapter", "number": 1, "title": "April 29", "dateRange": "Apr 29 – Aug 10, 2025" },
-    { "type": "photo", "src": "media/photos/0001.webp", "width": 1600, "height": 720, "date": "May 23, 2025", "caption": "Placeholder caption." },
-    { "type": "end", "line": "Happy anniversary", "date": "August 11, 2026" }
+    {
+      "type": "gate",
+      "prompt": "What day did we first see each other?",
+      "hint": "the day I couldn't stop talking about you"
+    },
+    {
+      "type": "title",
+      "kicker": "one year",
+      "line": "of you and me",
+      "cta": "tap to begin"
+    },
+    {
+      "type": "chapter",
+      "number": 1,
+      "title": "April 29",
+      "dateRange": "Apr 29 \u2013 Aug 10, 2025"
+    },
+    {
+      "type": "interstitial",
+      "line": "Before there were pictures of us, there were almost eighteen thousand words."
+    },
+    {
+      "type": "texts",
+      "date": "May 22, 2025 \u00b7 12:00 am",
+      "messages": [
+        {
+          "from": "her",
+          "body": "Nice to see you Suraj \ud83e\udd70 good night"
+        },
+        {
+          "from": "him",
+          "body": "It was nice seeing you too tejasvi. Good night :)"
+        }
+      ]
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0001.webp",
+      "width": 720,
+      "height": 1600,
+      "date": "May 23, 2025"
+    },
+    {
+      "type": "letter",
+      "src": "media/letters/0001.webp",
+      "width": 1352,
+      "height": 3000,
+      "occasion": "while you were away, 2025"
+    },
+    {
+      "type": "letter",
+      "src": "media/letters/0002.webp",
+      "width": 1352,
+      "height": 3000,
+      "occasion": "while you were away, 2025"
+    },
+    {
+      "type": "chapter",
+      "number": 2,
+      "title": "August 11",
+      "dateRange": "Aug 11 \u2013 Nov 30, 2025"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0004.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "August 11, 2025"
+    },
+    {
+      "type": "texts",
+      "date": "September 1, 2025 \u00b7 6:47 pm",
+      "messages": [
+        {
+          "from": "her",
+          "body": "Miss you suraj \ud83d\ude18"
+        },
+        {
+          "from": "him",
+          "body": "Miss you too tejasvi. Excited to see you in 3ish days"
+        }
+      ]
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0002.webp",
+      "width": 1200,
+      "height": 1600,
+      "date": "September 5, 2025"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0003.webp",
+      "width": 720,
+      "height": 1600,
+      "date": "September 13, 2025"
+    },
+    {
+      "type": "chapter",
+      "number": 3,
+      "title": "December",
+      "dateRange": "December 2025"
+    },
+    {
+      "type": "texts",
+      "date": "December 9, 2025 \u00b7 12:30 am",
+      "messages": [
+        {
+          "from": "her",
+          "body": "Seeing my friends now they all ask how things are going w you. And thought I\u2019d share my reflection w you. Last time I came I already felt pretty stable and secure and that hasn\u2019t been the main change. Main progression IMO from this visit was an increased level of comfort and openness, and fewer barriers/walls. Like being able to talk about a shared future openly - most noteworthy progression IMO. Moving toward talking more openly about convos we have w our families involving each other is part of that. And doing regular things like changing and farting lol in front of each other. Lowkey the farting one is important for me cus it hasn\u2019t been much of an issue but I tend to get gassy a lot based on diet lmao."
+        },
+        {
+          "from": "her",
+          "body": "Oh and of course I love you is probably the most significant progression / milestone haha"
+        }
+      ]
+    },
+    {
+      "type": "letter",
+      "src": "media/letters/0003.webp",
+      "width": 1352,
+      "height": 3000,
+      "occasion": "December 29, 2025"
+    },
+    {
+      "type": "chapter",
+      "number": 4,
+      "title": "Point Reyes",
+      "dateRange": "January 30 \u2013 31, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0005.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "January 30, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0006.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "January 30, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0007.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "January 30, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0008.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "January 31, 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0001.mp4",
+      "poster": "media/photos/poster-0001.webp",
+      "width": 1280,
+      "height": 720,
+      "date": "January 31, 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0002.mp4",
+      "poster": "media/photos/poster-0002.webp",
+      "width": 1280,
+      "height": 960,
+      "date": "January 31, 2026"
+    },
+    {
+      "type": "chapter",
+      "number": 5,
+      "title": "The ordinary months",
+      "dateRange": "February \u2013 April 2026"
+    },
+    {
+      "type": "texts",
+      "date": "February 9, 2026 \u00b7 11:33 pm",
+      "messages": [
+        {
+          "from": "him",
+          "body": "Love you tejasvi"
+        },
+        {
+          "from": "her",
+          "body": "Love you too \ud83d\udc95"
+        }
+      ]
+    },
+    {
+      "type": "letter",
+      "src": "media/letters/0004.webp",
+      "width": 3000,
+      "height": 1352,
+      "occasion": "Valentine's Day 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0003.mp4",
+      "poster": "media/photos/poster-0003.webp",
+      "width": 1280,
+      "height": 720,
+      "date": "February 27, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0009.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "February 27, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0010.webp",
+      "width": 1200,
+      "height": 1600,
+      "date": "February 27, 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0004.mp4",
+      "poster": "media/photos/poster-0004.webp",
+      "width": 1280,
+      "height": 720,
+      "date": "February 28, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0011.webp",
+      "width": 1200,
+      "height": 1600,
+      "date": "March 1, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0012.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "March 1, 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0009.mp4",
+      "poster": "media/photos/poster-0009.webp",
+      "width": 720,
+      "height": 1280,
+      "date": "March 4, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0013.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "March 15, 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0005.mp4",
+      "poster": "media/photos/poster-0005.webp",
+      "width": 568,
+      "height": 320,
+      "date": "March 18, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0014.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "March 27, 2026"
+    },
+    {
+      "type": "chapter",
+      "number": 6,
+      "title": "May 18",
+      "dateRange": "May \u2013 July 2026"
+    },
+    {
+      "type": "texts",
+      "date": "May 18, 2026 \u00b7 12:33 am",
+      "messages": [
+        {
+          "from": "her",
+          "body": "My mom says all the best for your defense tomorrow \ud83d\ude0a"
+        },
+        {
+          "from": "her",
+          "body": "/ today"
+        }
+      ]
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0019.webp",
+      "width": 1200,
+      "height": 1600,
+      "date": "May 3, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0015.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "May 8, 2026"
+    },
+    {
+      "type": "letter",
+      "src": "media/letters/0005.webp",
+      "width": 3000,
+      "height": 1352,
+      "occasion": "May 18, 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0006.mp4",
+      "poster": "media/photos/poster-0006.webp",
+      "width": 568,
+      "height": 320,
+      "date": "May 20, 2026"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0007.mp4",
+      "poster": "media/photos/poster-0007.webp",
+      "width": 1280,
+      "height": 720,
+      "date": "May 30, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0016.webp",
+      "width": 1200,
+      "height": 1600,
+      "date": "June 9, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0017.webp",
+      "width": 1200,
+      "height": 1600,
+      "date": "June 10, 2026",
+      "caption": "June 10, 2026 - happy birthday"
+    },
+    {
+      "type": "video",
+      "src": "media/video/0008.mp4",
+      "poster": "media/photos/poster-0008.webp",
+      "width": 1280,
+      "height": 720,
+      "date": "July 1, 2026"
+    },
+    {
+      "type": "photo",
+      "src": "media/photos/0018.webp",
+      "width": 1600,
+      "height": 1200,
+      "date": "July 24, 2026"
+    },
+    {
+      "type": "letter",
+      "src": "media/letters/0006.webp",
+      "width": 3000,
+      "height": 1352,
+      "occasion": "August 11, 2026"
+    },
+    {
+      "type": "numbers",
+      "stats": []
+    },
+    {
+      "type": "missive",
+      "lines": [],
+      "signoff": "\u2014 me"
+    },
+    {
+      "type": "end",
+      "line": "Happy anniversary",
+      "date": "August 11, 2026"
+    }
   ]
 }
