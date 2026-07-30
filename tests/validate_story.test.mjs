@@ -66,3 +66,35 @@ test('flags duplicate media so nothing is accidentally shown twice', () => {
   bad.frames.splice(4, 0, { type: 'photo', src: 'media/photos/0001.webp', width: 10, height: 10, caption: 'y' });
   assert.match(validateStory(bad).join(' '), /duplicate media src/);
 });
+
+test('collection fields must be arrays', () => {
+  for (const frame of [
+    { type: 'texts', date: 'x', messages: {} },
+    { type: 'numbers', stats: 'many' },
+    { type: 'missive', lines: null, signoff: 'Always' },
+  ]) {
+    const bad = structuredClone(valid);
+    bad.frames.splice(-1, 0, frame);
+    assert.match(validateStory(bad).join(' '), new RegExp(`${frame.type === 'texts' ? 'messages' : frame.type === 'numbers' ? 'stats' : 'lines'} must be an array`));
+  }
+});
+
+test('null nested messages and stats produce validation errors', () => {
+  const bad = structuredClone(valid);
+  bad.frames.splice(-1, 0,
+    { type: 'texts', date: 'x', messages: [null] },
+    { type: 'numbers', stats: [null] },
+  );
+
+  const errors = validateStory(bad).join(' ');
+  assert.match(errors, /frame 4 message 0: must be an object/);
+  assert.match(errors, /frame 5 stat 0: must be an object/);
+});
+
+test('null and non-object frames produce validation errors', () => {
+  for (const frame of [null, 'end']) {
+    const bad = structuredClone(valid);
+    bad.frames.splice(-1, 0, frame);
+    assert.match(validateStory(bad).join(' '), /frame 4: must be an object/);
+  }
+});

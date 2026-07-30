@@ -16,6 +16,11 @@ const REQUIRED = {
 };
 
 const MEASURED = new Set(['photo', 'video', 'letter']);
+const COLLECTIONS = {
+  texts: 'messages',
+  numbers: 'stats',
+  missive: 'lines',
+};
 
 export function validateStory(manifest) {
   const errors = [];
@@ -34,12 +39,16 @@ export function validateStory(manifest) {
     return errors;
   }
 
-  if (frames[0].type !== 'gate') errors.push('first frame must be the gate');
-  if (frames.at(-1).type !== 'end') errors.push('last frame must be the end card');
+  if (frames[0]?.type !== 'gate') errors.push('first frame must be the gate');
+  if (frames.at(-1)?.type !== 'end') errors.push('last frame must be the end card');
 
   const seenMedia = new Set();
 
   frames.forEach((frame, index) => {
+    if (frame === null || typeof frame !== 'object' || Array.isArray(frame)) {
+      errors.push(`frame ${index}: must be an object`);
+      return;
+    }
     const required = REQUIRED[frame.type];
     if (!required) {
       errors.push(`frame ${index}: unknown type "${frame.type}"`);
@@ -49,6 +58,10 @@ export function validateStory(manifest) {
       if (frame[key] === undefined || frame[key] === null || frame[key] === '') {
         errors.push(`frame ${index}: missing ${key}`);
       }
+    }
+    const collection = COLLECTIONS[frame.type];
+    if (collection && !Array.isArray(frame[collection])) {
+      errors.push(`frame ${index}: ${collection} must be an array`);
     }
     if (MEASURED.has(frame.type)) {
       for (const key of ['width', 'height']) {
@@ -63,6 +76,10 @@ export function validateStory(manifest) {
     }
     if (frame.type === 'texts' && Array.isArray(frame.messages)) {
       frame.messages.forEach((message, m) => {
+        if (message === null || typeof message !== 'object' || Array.isArray(message)) {
+          errors.push(`frame ${index} message ${m}: must be an object`);
+          return;
+        }
         if (message.from !== 'her' && message.from !== 'him') {
           errors.push(`frame ${index} message ${m}: from must be "her" or "him"`);
         }
@@ -71,6 +88,10 @@ export function validateStory(manifest) {
     }
     if (frame.type === 'numbers' && Array.isArray(frame.stats)) {
       frame.stats.forEach((stat, s) => {
+        if (stat === null || typeof stat !== 'object' || Array.isArray(stat)) {
+          errors.push(`frame ${index} stat ${s}: must be an object`);
+          return;
+        }
         for (const key of ['value', 'label', 'note']) {
           if (!stat[key]) errors.push(`frame ${index} stat ${s}: missing ${key}`);
         }
