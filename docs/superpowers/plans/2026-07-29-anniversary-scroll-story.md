@@ -109,8 +109,11 @@ test('checkAnswer compares normalized forms', () => {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `node --test tests/`
+Run: `node --test "tests/**/*.test.mjs"`
 Expected: FAIL — `Cannot find module '.../site/js/gate.js'`
+
+Note: a bare directory argument (`node --test tests/`) is resolved as a module to execute rather
+than a directory to scan on Node 23.5.0 and fails with `MODULE_NOT_FOUND`. Always pass the glob.
 
 - [ ] **Step 3: Create `package.json`**
 
@@ -120,7 +123,7 @@ Expected: FAIL — `Cannot find module '.../site/js/gate.js'`
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/",
+    "test": "node --test \"tests/**/*.test.mjs\"",
     "serve": "python3 -m http.server 8080 --directory site"
   }
 }
