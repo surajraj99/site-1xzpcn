@@ -1,0 +1,10 @@
+{
+  "meta": { "audio": "media/audio/theme.m4a", "gateAnswer": "04-29" },
+  "frames": [
+    { "type": "gate", "prompt": "What day did we first see each other?", "hint": "the day I couldn't stop talking about you" },
+    { "type": "title", "kicker": "one year", "line": "of you and me", "cta": "tap to begin" },
+    { "type": "chapter", "number": 1, "title": "April 29", "dateRange": "Apr 29 – Aug 10, 2025" },
+    { "type": "photo", "src": "media/photos/0001.webp", "width": 1600, "height": 720, "date": "May 23, 2025", "caption": "Placeholder caption." },
+    { "type": "end", "line": "Happy anniversary", "date": "August 11, 2026" }
+  ]
+}
