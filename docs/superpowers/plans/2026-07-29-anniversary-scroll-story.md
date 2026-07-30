@@ -256,7 +256,8 @@ test('video frame is muted, looping, inline and poster-backed', () => {
   assert.match(html, /muted/);
   assert.match(html, /loop/);
   assert.match(html, /playsinline/);
-  assert.match(html, /poster="media\/video\/0002\.jpg"/);
+  assert.match(html, /data-poster="media\/video\/0002\.jpg"/);
+  assert.ok(!/\sposter="/.test(html), 'the poster is deferred too — it loads eagerly otherwise');
   assert.ok(!html.includes('autoplay'), 'playback is driven by the observer, not the attribute');
 });
 
@@ -328,7 +329,9 @@ export function treatmentFor({ width, height }) {
   if (longEdge < 1000) return 'inset';
   const ratio = width / height;
   if (ratio >= 1.9) return 'pan';
-  if (ratio >= 1.2) return 'still';
+  // Anything at least as wide as it is tall is letterboxed. Full-bleed is reserved for
+  // genuinely portrait media: cropping a square to a phone screen loses the subject too.
+  if (ratio >= 1.0) return 'still';
   return 'portrait';
 }
 
@@ -386,7 +389,7 @@ const RENDERERS = {
 
   video: (f) => `
     <figure class="frame frame--video is-${treatmentFor(f)}" data-reveal>
-      <video class="media" data-src="${escapeHtml(f.src)}" poster="${escapeHtml(f.poster)}"
+      <video class="media" data-src="${escapeHtml(f.src)}" data-poster="${escapeHtml(f.poster)}"
              width="${escapeHtml(f.width)}" height="${escapeHtml(f.height)}"
              muted loop playsinline preload="none"></video>
       ${caption(f)}
@@ -448,9 +451,12 @@ const RENDERERS = {
 };
 
 export function renderFrame(frame) {
-  const render = RENDERERS[frame.type];
-  if (!render) throw new Error(`unknown frame type: ${frame.type}`);
-  return render(frame);
+  // hasOwn, not a truthiness check: `{type: 'toString'}` would otherwise resolve through
+  // Object.prototype and render garbage instead of failing loudly.
+  if (!Object.hasOwn(RENDERERS, frame.type)) {
+    throw new Error(`unknown frame type: ${frame.type}`);
+  }
+  return RENDERERS[frame.type](frame);
 }
 
 export function renderStory(frames) {
@@ -1483,6 +1489,9 @@ function swapInSource(media) {
   if (!src || media.dataset.loaded === 'true') return;
   media.dataset.loaded = 'true';
   if (media.tagName === 'VIDEO') {
+    // The poster is deferred too — a `poster` attribute is fetched immediately even under
+    // preload="none", and nine posters loaded upfront would blow the first-screen budget.
+    if (media.dataset.poster) media.poster = media.dataset.poster;
     media.preload = 'auto';
     media.src = src;
     media.load();

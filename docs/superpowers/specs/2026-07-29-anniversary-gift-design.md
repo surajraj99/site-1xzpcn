@@ -155,8 +155,8 @@ selects a treatment from that measured ratio. No hardcoded assumptions.
 
 | Measured shape | Treatment |
 |---|---|
-| Portrait (h > w) | Full-bleed, edge to edge, caption over a bottom scrim |
-| Landscape (1.2 ≤ w/h < 1.9) | Film still: centered on black at full width, caption below the frame |
+| Portrait (w/h < 1.0) | Full-bleed, edge to edge, caption over a bottom scrim |
+| Landscape (1.0 ≤ w/h < 1.9) | Film still: centered on black at full width, caption below the frame |
 | Ultra-wide (w/h ≥ 1.9) | Slow horizontal pan across the image as she scrolls past |
 | Small (long edge < 1000px) | Framed card at 78% width, never enlarged past its native size |
 
