@@ -122,3 +122,31 @@ test('checkAnswer compares normalized forms', () => {
   assert.equal(checkAnswer('08/11', '04-29'), false);
   assert.equal(checkAnswer('garbage', '04-29'), false);
 });
+
+import { shouldSkipGate, rememberPass, GATE_KEY } from '../site/js/gate.js';
+
+function fakeStorage(initial = {}) {
+  const data = { ...initial };
+  return {
+    getItem: (k) => (k in data ? data[k] : null),
+    setItem: (k, v) => { data[k] = String(v); },
+    data,
+  };
+}
+
+test('the gate is skipped only after a recorded pass', () => {
+  assert.equal(shouldSkipGate(fakeStorage()), false);
+  assert.equal(shouldSkipGate(fakeStorage({ [GATE_KEY]: 'true' })), true);
+});
+
+test('rememberPass records the pass', () => {
+  const storage = fakeStorage();
+  rememberPass(storage);
+  assert.equal(storage.data[GATE_KEY], 'true');
+  assert.equal(shouldSkipGate(storage), true);
+});
+
+test('missing storage never throws', () => {
+  assert.equal(shouldSkipGate(null), false);
+  assert.doesNotThrow(() => rememberPass(null));
+});

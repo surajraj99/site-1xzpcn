@@ -1,5 +1,6 @@
 import { renderStory } from './frames.js';
 import { createRevealController } from './reveal.js';
+import { mountGate } from './gate.js';
 
 async function loadStory() {
   const response = await fetch('content/story.json', { cache: 'no-cache' });
@@ -13,7 +14,16 @@ async function boot() {
   container.innerHTML = renderStory(story.frames);
 
   const controller = createRevealController({ root: container });
-  controller.observe();
+
+  mountGate({
+    container,
+    expected: story.meta.gateAnswer,
+    storage: window.localStorage,
+    onPass: () => {
+      document.body.classList.add('is-open');
+      controller.observe();
+    },
+  });
 
   window.__story = story; // Tasks 8 and 9 read meta from here.
 }

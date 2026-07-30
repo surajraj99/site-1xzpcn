@@ -65,3 +65,62 @@ export function checkAnswer(input, expected) {
   const got = normalizeDate(input);
   return got !== null && got === expected;
 }
+
+export const GATE_KEY = "anniversary.entered";
+
+export function shouldSkipGate(storage) {
+  try {
+    return storage?.getItem(GATE_KEY) === "true";
+  } catch {
+    return false; // Private browsing can throw on access.
+  }
+}
+
+export function rememberPass(storage) {
+  try {
+    storage?.setItem(GATE_KEY, "true");
+  } catch {
+    /* nothing to do — she just sees the gate again next time */
+  }
+}
+
+// Wrong answers never lock her out; the third attempt surfaces the hint.
+export function mountGate({ container, expected, onPass, storage = null }) {
+  const gate = container.querySelector("#gate");
+  const input = container.querySelector("#gate-input");
+  const submit = container.querySelector("#gate-submit");
+  const hint = container.querySelector("#gate-hint");
+  if (!gate) return;
+
+  if (shouldSkipGate(storage)) {
+    gate.remove();
+    onPass({ skipped: true });
+    return;
+  }
+
+  let attempts = 0;
+
+  function attempt() {
+    if (checkAnswer(input.value, expected)) {
+      rememberPass(storage);
+      gate.style.transition = "opacity 700ms var(--ease)";
+      gate.style.opacity = "0";
+      setTimeout(() => {
+        gate.remove();
+        window.scrollTo(0, 0);
+        onPass({ skipped: false });
+      }, 700);
+      return;
+    }
+    attempts += 1;
+    input.classList.add("is-wrong");
+    input.value = "";
+    if (attempts >= 3) hint.hidden = false;
+    setTimeout(() => input.classList.remove("is-wrong"), 900);
+  }
+
+  submit.addEventListener("click", attempt);
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") attempt();
+  });
+}
