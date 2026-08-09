@@ -54,7 +54,7 @@ test('every frame renderer escapes all text-bearing fields', () => {
       type: 'numbers', stats: [{ value: HOSTILE, label: HOSTILE, note: HOSTILE }],
     }),
     () => ({ type: 'missive', lines: [HOSTILE], signoff: HOSTILE }),
-    () => ({ type: 'end', line: HOSTILE, date: HOSTILE }),
+    () => ({ type: 'end', line: HOSTILE, date: HOSTILE, whisper: HOSTILE }),
   ];
 
   assert.equal(factories.length, 11, 'add an escaping case when adding a frame renderer');
@@ -124,6 +124,14 @@ test('missive renders one element per line so each can reveal separately', () =>
   });
   assert.equal((html.match(/class="missive__line"/g) || []).length, 3);
   assert.match(html, /— me/);
+});
+
+test('end card can reveal a delayed closing whisper', () => {
+  const html = renderFrame({
+    type: 'end', line: 'Happy anniversary', date: 'August 11, 2026', whisper: 'Love you, tejers.',
+  });
+  assert.match(html, /class="end__whisper"/);
+  assert.match(html, /Love you, tejers\./);
 });
 
 test('unknown frame types throw rather than render silently', () => {

@@ -43,7 +43,8 @@
       "type": "photo",
       "src": "media/photos/0001.webp",
       "width": 720,
-      "height": 1600
+      "height": 1600,
+      "caption": "Before there were pictures, there was this."
     },
     {
       "type": "letter",
@@ -60,6 +61,10 @@
       "occasion": "while you were away, 2025"
     },
     {
+      "type": "interstitial",
+      "line": "A long way to travel. Still, you kept arriving."
+    },
+    {
       "type": "chapter",
       "number": 2,
       "title": "August 11",
@@ -69,7 +74,8 @@
       "type": "photo",
       "src": "media/photos/0004.webp",
       "width": 1600,
-      "height": 1200
+      "height": 1200,
+      "caption": "And then we were official."
     },
     {
       "type": "texts",
@@ -134,7 +140,8 @@
       "type": "photo",
       "src": "media/photos/0005.webp",
       "width": 1600,
-      "height": 1200
+      "height": 1200,
+      "caption": "The camera finally started keeping up."
     },
     {
       "type": "photo",
@@ -225,7 +232,8 @@
       "type": "photo",
       "src": "media/photos/0011.webp",
       "width": 1200,
-      "height": 1600
+      "height": 1600,
+      "caption": "A Tuesday. Exactly the point."
     },
     {
       "type": "photo",
@@ -260,6 +268,10 @@
       "height": 1200
     },
     {
+      "type": "interstitial",
+      "line": "Nothing spectacular. Everything I wanted."
+    },
+    {
       "type": "chapter",
       "number": 6,
       "title": "May 18",
@@ -283,7 +295,8 @@
       "type": "photo",
       "src": "media/photos/0019.webp",
       "width": 1200,
-      "height": 1600
+      "height": 1600,
+      "caption": "Still, us \u2014 a little further along."
     },
     {
       "type": "photo",
@@ -323,7 +336,7 @@
       "src": "media/photos/0017.webp",
       "width": 1200,
       "height": 1600,
-      "caption": "June 10, 2026 \\u2014 happy birthday"
+      "caption": "June 10, 2026 \u2014 happy birthday"
     },
     {
       "type": "video",
@@ -336,7 +349,8 @@
       "type": "photo",
       "src": "media/photos/0018.webp",
       "width": 1600,
-      "height": 1200
+      "height": 1200,
+      "caption": "Still, us."
     },
     {
       "type": "letter",
@@ -389,7 +403,8 @@
     {
       "type": "end",
       "line": "Happy anniversary",
-      "date": "August 11, 2026"
+      "date": "August 11, 2026",
+      "whisper": "Love you, tejers."
     }
   ]
 }

@@ -129,6 +129,7 @@ const RENDERERS = {
         <h2 class="end__line">${escapeHtml(f.line)}</h2>
         <hr class="rule">
         <p class="end__date">${escapeHtml(f.date)}</p>
+        ${f.whisper ? `<p class="end__whisper">${escapeHtml(f.whisper)}</p>` : ''}
       </div>
     </section>`,
 };
