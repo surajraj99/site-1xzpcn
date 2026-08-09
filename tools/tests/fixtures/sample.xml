@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<smses count="7">
+  <sms protocol="0" address="+1555" date="1746039300000" type="1" body="first real message from her" readable_date="Apr 30, 2025 14:55:00" contact_name="Her" />
+  <sms protocol="0" address="+1555" date="1746039300000" type="1" body="first real message from her" readable_date="Apr 30, 2025 14:55:00" contact_name="Her" />
+  <sms protocol="0" address="+1555" date="1746039400000" type="2" body="reply from him with four words" readable_date="Apr 30, 2025 14:56:40" contact_name="Her" />
+  <sms protocol="0" address="+1555" date="1746039500000" type="1" body="&#8203;&#10084;&#65039; to &#8220; reply from him with four words &#8221;" readable_date="Apr 30, 2025 14:58:20" contact_name="Her" />
+  <sms protocol="0" address="+1555" date="1746039600000" type="1" body="null" readable_date="Apr 30, 2025 15:00:00" contact_name="Her" />
+  <mms date="1746039700000" msg_box="2" address="+1555" readable_date="Apr 30, 2025 15:01:40" contact_name="Her">
+    <parts>
+      <part seq="-1" ct="application/smil" name="smil.xml" text="&lt;smil&gt;&lt;head&gt;&lt;layout&gt;&lt;/layout&gt;&lt;/head&gt;&lt;/smil&gt;" />
+      <part seq="0" ct="text/plain" name="text000001.txt" text="mms text from him" />
+    </parts>
+  </mms>
+  <mms date="1746039800000" msg_box="1" address="+1555" readable_date="Apr 30, 2025 15:03:20" contact_name="Her">
+    <parts>
+      <part seq="0" ct="text/plain" name="text000001.txt" text="I love you and I mean it" />
+    </parts>
+  </mms>
+</smses>
