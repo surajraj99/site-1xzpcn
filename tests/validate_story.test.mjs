@@ -45,6 +45,21 @@ test('video frames require a poster', () => {
   assert.match(validateStory(bad).join(' '), /frame 5: missing poster/);
 });
 
+test('flags missing media, poster, and audio assets when an asset resolver is provided', () => {
+  const errors = validateStory(valid, { assetExists: () => false }).join(' ');
+  assert.match(errors, /missing audio asset media\/audio\/theme\.m4a/);
+  assert.match(errors, /frame 3: missing media asset media\/photos\/0001\.webp/);
+
+  const withVideo = structuredClone(valid);
+  withVideo.frames.splice(-1, 0, {
+    type: 'video', src: 'media/video/0001.mp4', poster: 'media/video/0001.jpg', width: 1280, height: 720,
+  });
+  assert.match(
+    validateStory(withVideo, { assetExists: () => false }).join(' '),
+    /frame 4: missing poster asset media\/video\/0001\.jpg/,
+  );
+});
+
 test('texts frames require sender to be her or him', () => {
   const bad = structuredClone(valid);
   bad.frames.push({ type: 'texts', date: 'x', messages: [{ from: 'them', body: 'hi' }] });

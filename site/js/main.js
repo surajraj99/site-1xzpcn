@@ -37,10 +37,15 @@ function mountAudio(story, container) {
   toggle.className = 'audio-toggle';
   toggle.type = 'button';
   toggle.hidden = true;
-  toggle.textContent = 'sound on';
+  function updateToggle() {
+    const playing = audio.isPlaying();
+    toggle.textContent = playing ? 'sound on' : 'sound off';
+    toggle.setAttribute('aria-pressed', String(playing));
+    toggle.setAttribute('aria-label', playing ? 'Turn sound off' : 'Turn sound on');
+  }
   toggle.addEventListener('click', async () => {
     await audio.toggle();
-    toggle.textContent = audio.isPlaying() ? 'sound on' : 'sound off';
+    updateToggle();
   });
   document.body.append(toggle);
 
@@ -49,7 +54,7 @@ function mountAudio(story, container) {
     begin.addEventListener('click', async () => {
       await audio.start();
       toggle.hidden = false;
-      toggle.textContent = audio.isPlaying() ? 'sound on' : 'sound off';
+      updateToggle();
       container.querySelector('.frame--chapter')?.scrollIntoView({ behavior: 'smooth' });
     });
   }

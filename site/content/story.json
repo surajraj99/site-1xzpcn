@@ -43,8 +43,7 @@
       "type": "photo",
       "src": "media/photos/0001.webp",
       "width": 720,
-      "height": 1600,
-      "date": "May 23, 2025"
+      "height": 1600
     },
     {
       "type": "letter",
@@ -70,8 +69,7 @@
       "type": "photo",
       "src": "media/photos/0004.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "August 11, 2025"
+      "height": 1200
     },
     {
       "type": "texts",
@@ -91,15 +89,13 @@
       "type": "photo",
       "src": "media/photos/0002.webp",
       "width": 1200,
-      "height": 1600,
-      "date": "September 5, 2025"
+      "height": 1600
     },
     {
       "type": "photo",
       "src": "media/photos/0003.webp",
       "width": 720,
-      "height": 1600,
-      "date": "September 13, 2025"
+      "height": 1600
     },
     {
       "type": "chapter",
@@ -138,45 +134,39 @@
       "type": "photo",
       "src": "media/photos/0005.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "January 30, 2026"
+      "height": 1200
     },
     {
       "type": "photo",
       "src": "media/photos/0006.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "January 30, 2026"
+      "height": 1200
     },
     {
       "type": "photo",
       "src": "media/photos/0007.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "January 30, 2026"
+      "height": 1200
     },
     {
       "type": "photo",
       "src": "media/photos/0008.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "January 31, 2026"
+      "height": 1200
     },
     {
       "type": "video",
       "src": "media/video/0001.mp4",
-      "poster": "media/photos/poster-0001.webp",
+      "poster": "media/video/0001.jpg",
       "width": 1280,
-      "height": 720,
-      "date": "January 31, 2026"
+      "height": 720
     },
     {
       "type": "video",
       "src": "media/video/0002.mp4",
-      "poster": "media/photos/poster-0002.webp",
+      "poster": "media/video/0002.jpg",
       "width": 1280,
-      "height": 960,
-      "date": "January 31, 2026"
+      "height": 960
     },
     {
       "type": "chapter",
@@ -208,76 +198,66 @@
     {
       "type": "video",
       "src": "media/video/0003.mp4",
-      "poster": "media/photos/poster-0003.webp",
+      "poster": "media/video/0003.jpg",
       "width": 1280,
-      "height": 720,
-      "date": "February 27, 2026"
+      "height": 720
     },
     {
       "type": "photo",
       "src": "media/photos/0009.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "February 27, 2026"
+      "height": 1200
     },
     {
       "type": "photo",
       "src": "media/photos/0010.webp",
       "width": 1200,
-      "height": 1600,
-      "date": "February 27, 2026"
+      "height": 1600
     },
     {
       "type": "video",
       "src": "media/video/0004.mp4",
-      "poster": "media/photos/poster-0004.webp",
+      "poster": "media/video/0004.jpg",
       "width": 1280,
-      "height": 720,
-      "date": "February 28, 2026"
+      "height": 720
     },
     {
       "type": "photo",
       "src": "media/photos/0011.webp",
       "width": 1200,
-      "height": 1600,
-      "date": "March 1, 2026"
+      "height": 1600
     },
     {
       "type": "photo",
       "src": "media/photos/0012.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "March 1, 2026"
+      "height": 1200
     },
     {
       "type": "video",
       "src": "media/video/0009.mp4",
-      "poster": "media/photos/poster-0009.webp",
+      "poster": "media/video/0009.jpg",
       "width": 720,
-      "height": 1280,
-      "date": "March 4, 2026"
+      "height": 1280
     },
     {
       "type": "photo",
       "src": "media/photos/0013.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "March 15, 2026"
+      "height": 1200
     },
     {
       "type": "video",
       "src": "media/video/0005.mp4",
-      "poster": "media/photos/poster-0005.webp",
+      "poster": "media/video/0005.jpg",
       "width": 568,
-      "height": 320,
-      "date": "March 18, 2026"
+      "height": 320
     },
     {
       "type": "photo",
       "src": "media/photos/0014.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "March 27, 2026"
+      "height": 1200
     },
     {
       "type": "chapter",
@@ -303,15 +283,13 @@
       "type": "photo",
       "src": "media/photos/0019.webp",
       "width": 1200,
-      "height": 1600,
-      "date": "May 3, 2026"
+      "height": 1600
     },
     {
       "type": "photo",
       "src": "media/photos/0015.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "May 8, 2026"
+      "height": 1200
     },
     {
       "type": "letter",
@@ -323,48 +301,42 @@
     {
       "type": "video",
       "src": "media/video/0006.mp4",
-      "poster": "media/photos/poster-0006.webp",
+      "poster": "media/video/0006.jpg",
       "width": 568,
-      "height": 320,
-      "date": "May 20, 2026"
+      "height": 320
     },
     {
       "type": "video",
       "src": "media/video/0007.mp4",
-      "poster": "media/photos/poster-0007.webp",
+      "poster": "media/video/0007.jpg",
       "width": 1280,
-      "height": 720,
-      "date": "May 30, 2026"
+      "height": 720
     },
     {
       "type": "photo",
       "src": "media/photos/0016.webp",
       "width": 1200,
-      "height": 1600,
-      "date": "June 9, 2026"
+      "height": 1600
     },
     {
       "type": "photo",
       "src": "media/photos/0017.webp",
       "width": 1200,
       "height": 1600,
-      "date": "June 10, 2026",
-      "caption": "June 10, 2026 - happy birthday"
+      "caption": "June 10, 2026 \\u2014 happy birthday"
     },
     {
       "type": "video",
       "src": "media/video/0008.mp4",
-      "poster": "media/photos/poster-0008.webp",
+      "poster": "media/video/0008.jpg",
       "width": 1280,
-      "height": 720,
-      "date": "July 1, 2026"
+      "height": 720
     },
     {
       "type": "photo",
       "src": "media/photos/0018.webp",
       "width": 1600,
-      "height": 1200,
-      "date": "July 24, 2026"
+      "height": 1200
     },
     {
       "type": "letter",
@@ -403,7 +375,7 @@
       "lines": [
         "Tejasvi,",
         "Thank you for making this last year a lot better with your presence.",
-        "I know it hasn't always been easy. We were long distance for a while, we don't share a sense of humor, and you many not like my personality all the time.",
+        "I know it hasn't always been easy. We were long distance for a while, we don't share a sense of humor, and you may not like my personality all the time.",
         "Or when you're dealing with things I can't fully understand because I'm not living your experiences.",
         "But we keep pushing through.",
         "I care for you deeply.",
