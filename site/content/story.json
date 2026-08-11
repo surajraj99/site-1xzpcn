@@ -48,10 +48,17 @@
     },
     {
       "type": "letter",
-      "src": "media/letters/0001.webp",
+      "src": "media/letters/0004.webp",
+      "width": 3000,
+      "height": 1352,
+      "occasion": "July 11, 2025"
+    },
+    {
+      "type": "letter",
+      "src": "media/letters/0003.webp",
       "width": 1352,
       "height": 3000,
-      "occasion": "while you were away, 2025"
+      "occasion": "August 1, 2025"
     },
     {
       "type": "letter",
@@ -125,9 +132,9 @@
     },
     {
       "type": "letter",
-      "src": "media/letters/0003.webp",
-      "width": 1352,
-      "height": 3000,
+      "src": "media/letters/0006.webp",
+      "width": 3000,
+      "height": 1352,
       "occasion": "December 29, 2025"
     },
     {
@@ -197,7 +204,7 @@
     },
     {
       "type": "letter",
-      "src": "media/letters/0004.webp",
+      "src": "media/letters/0005.webp",
       "width": 3000,
       "height": 1352,
       "occasion": "Valentine's Day 2026"
@@ -233,7 +240,7 @@
       "src": "media/photos/0011.webp",
       "width": 1200,
       "height": 1600,
-      "caption": "A Tuesday. Exactly the point."
+      "caption": "Stunting."
     },
     {
       "type": "photo",
@@ -306,9 +313,9 @@
     },
     {
       "type": "letter",
-      "src": "media/letters/0005.webp",
-      "width": 3000,
-      "height": 1352,
+      "src": "media/letters/0001.webp",
+      "width": 1352,
+      "height": 3000,
       "occasion": "May 18, 2026"
     },
     {
@@ -350,14 +357,7 @@
       "src": "media/photos/0018.webp",
       "width": 1600,
       "height": 1200,
-      "caption": "Still, us."
-    },
-    {
-      "type": "letter",
-      "src": "media/letters/0006.webp",
-      "width": 3000,
-      "height": 1352,
-      "occasion": "August 11, 2026"
+      "caption": "The experiences we shared."
     },
     {
       "type": "numbers",
